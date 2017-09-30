@@ -29,7 +29,7 @@ int main()
   }
 
 	else
-		result = (-b + b1) / (a - a1);
+          result = (-b + b1) / (a - a1);
 	  printf("(-b + b1) / (a-a1) =%f\n", result);
 	  result = (-b + b1) / (a - a1)*(a + b);
 	  printf("(-b + b1) / (a - a1)*(a+b)=%f\n", result);
