@@ -23,6 +23,6 @@ int main()
 	{
 		x = x + i;
 	}
-	printf("Sum:%d; \n", x);
+	printf("Sum:%d \n", x);
 	return 0;
 }
