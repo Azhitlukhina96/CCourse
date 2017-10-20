@@ -13,7 +13,7 @@ int main()
 	for (int j = 0; j < N; j++)
 	{
 		matrix[j] = rand() % 10;
-		printf("| %d |", matrix[j]);
+		printf(" %d ", matrix[j]);
 	}
 
 	printf("\n");
