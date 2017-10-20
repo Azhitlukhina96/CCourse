@@ -19,7 +19,7 @@ int main()
 		for (int j = 0; j < N; j++)
 		{
 			matrix_A[i][j] = rand() % 50;
-			printf("| %d |", matrix_A[i][j]);
+			printf(" %d ", matrix_A[i][j]);
 		}
 	}
 
@@ -32,7 +32,7 @@ int main()
 		{
 			matrix_B[i][j] = rand() % 50;
 			matrix_C[i][j] = 0;
-			printf("| %d |", matrix_B[i][j]);
+			printf(" %d ", matrix_B[i][j]);
 		}
 	}
 
@@ -56,7 +56,7 @@ int main()
 		printf("\n");
 		for (int j = 0; j < N; j++)
 		{
-			printf("| %d |", matrix_C[i][j]);
+			printf(" %d ", matrix_C[i][j]);
 		}
 	}
 
