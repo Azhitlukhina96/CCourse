@@ -7,31 +7,30 @@
 
 int main()
 {
-	char buffer[BUFFER_SIZE];
 	char string[BUFFER_SIZE];
 	int string_len = 0;
-	scanf_s("%s", string, BUFFER_SIZE);
-
-	char *result = NULL;
+	char string_first_name[BUFFER_SIZE];
+	int result = NULL;
 	FILE *task2;
 	errno_t err = fopen_s(&task2, "C:\\Users\\uc2\\Desktop\\task2.txt", "r");
-	
+
 	if (err)
 		printf_s("The file task2.txt was not opened\n");
 	else
 	{
-		fscanf_s("%s %s", first_name, BUFFER_SIZE, string BUFFER_SIZE);
-		while (fgets(string_len, BUFFER_SIZE, task2) != NULL)
+		while (fscanf_s(task2, "%100s %100s", string_first_name, BUFFER_SIZE, string, BUFFER_SIZE) != EOF)
 		{
-			result= strlen(string);
+			result = strlen(string);
+			/*
 			if (result != 0)
 			{
-				printf("%s\n", string_len);
+				printf("%s %d\n", string, result);
 			}
+			*/
+			printf("%s %d\n", string, result);
 		}
 	}
-	
+
 	fclose(task2);
 	return 0;
 }
-
