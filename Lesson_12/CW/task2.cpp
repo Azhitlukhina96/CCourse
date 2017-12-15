@@ -44,11 +44,11 @@ int main()
 		while (fscanf_s(students, "%50s %50s %f %d %d", buffer.name, 50, buffer.surname, 50, &buffer.average_rating, &buffer.birthday, &buffer.id) != EOF)
 		{
 			group[counter] = buffer;
-			printf("%s\n", group[counter].name);
-			printf("%s\n", group[counter].surname);
-			printf("%f\n", group[counter].average_rating);
-			printf("%d\n", group[counter].birthday);
-			printf("%d\n", group[counter].id);
+			printf("Name: %s\n", group[counter].name);
+			printf("Surname: %s\n", group[counter].surname);
+			printf("Average_rating: %f\n", group[counter].average_rating);
+			printf("Birthday: %d\n", group[counter].birthday);
+			printf("Student ID: %d\n", group[counter].id);
 
 			counter++;
 		}
@@ -83,8 +83,8 @@ int main()
 
 		}
 	}
-	
-	
+
+
 	// порядок убывания average_rating
 	float waning_average_rating = 0;
 
@@ -106,22 +106,21 @@ int main()
 			}
 		}
 	}
-		printf("waning_average_rating= %f\n", waning_average_rating);
+	printf("waning_average_rating= %f\n", waning_average_rating);
 
 
+	// поиск студента в соответствии с именем и фамилией, которую вводит пользователь программы
 
 
-// поиск студента в соответствии с именем и фамилией, которую вводит пользователь программы
 
 
 
 
 	printf("max_average_rating= %f\n ", max_average_rating);
 	printf("min_birthday= %d\n", min_birthday);
-	
+
 	fclose(students);
 
 	return 0;
 
 }
-
