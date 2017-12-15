@@ -1,7 +1,10 @@
 #include "stdafx.h"
 #include <stdlib.h>
 #include <string.h>
+#include <time.h> 
 #define BUFFER_SIZE 1024
+
+
 
 struct student
 {
@@ -15,7 +18,7 @@ struct student
 
 int main()
 {
-	FILE *students =NULL;
+	FILE *students = NULL;
 
 	struct student buffer;
 
@@ -30,7 +33,7 @@ int main()
 
 	struct student group[7];
 
-	errno_t err = fopen_s(&students, "C:\\Users\\uc2\\Desktop\\students.txt", "r");
+	errno_t err = fopen_s(&students, "C:\\Users\\1\\Desktop\\students.txt", "r");
 	if (err)
 	{
 		printf_s("The file students.txt was not opened\n");
@@ -70,7 +73,7 @@ int main()
 
 	int min_birthday = 22222222;
 	struct student young_student;
-	
+
 	for (int i = 0; i < 7; i++)
 	{
 		if (min_birthday > group[i].birthday)
@@ -80,25 +83,45 @@ int main()
 
 		}
 	}
-
 	
-
-
+	
 	// порядок убывания average_rating
+	float waning_average_rating = 0;
 
-	int waning_average_rating = 0;
-	
 	struct student temp_student;
 
-	
-	
+	for (int i = 0; i < 7; i++)
+	{
+		for (int i = 0; i < buffer.average_rating - 1; ++i)
+		{
+			for (int j = 0; j <buffer.average_rating - 1; ++j)
+			{
+				if (group[j + 1].average_rating > group[j].average_rating)
+				{
+					waning_average_rating = group[j + 1].average_rating;
+					group[j + 1].average_rating = group[j].average_rating;
+					group[j].average_rating = waning_average_rating;
+					temp_student = group[i];
+				}
+			}
+		}
+	}
+		printf("waning_average_rating= %f\n", waning_average_rating);
+
+
+
+
+// поиск студента в соответствии с именем и фамилией, которую вводит пользователь программы
+
+
+
+
 	printf("max_average_rating= %f\n ", max_average_rating);
 	printf("min_birthday= %d\n", min_birthday);
-	printf("waning_average_rating= |%f\n|", waning_average_rating);
-
+	
 	fclose(students);
 
 	return 0;
-	
+
 }
 
