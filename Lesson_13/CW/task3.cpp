@@ -15,7 +15,7 @@ void print_my_coord(struct point my_coord)
 {
 	printf("x: %f\n", my_coord.x);
 	printf("y: %f\n", my_coord.y);
-	
+
 }
 
 struct cloud
@@ -57,8 +57,8 @@ int main()
 		{
 
 			printf_s("x: %f", my_cloud.points[counter].x);
-			printf_s("    y: %f\n", my_cloud.points[counter].y);
-			
+			printf_s("  y: %f\n", my_cloud.points[counter].y);
+
 
 			counter++;
 		}
@@ -74,17 +74,13 @@ int main()
 
 	print_my_coord(my_coord);
 
-	//вызвать функцию через for(10) distance(my_coord, my_cloud.points[i])
-	for (int i = 0, i < 10, distance(my_coord, my_cloud.points[i])
-	{
 
-	}
+
+	//вызвать функцию через for(10) distance(my_coord, my_cloud.points[i])
 	
+
 
 	//float distance;
 	_getch();
-	return 0;
+		return 0;
 }
-
-
-
