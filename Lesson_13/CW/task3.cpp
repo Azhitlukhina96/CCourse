@@ -11,16 +11,23 @@ struct point
 	float y;
 };
 
+void print_my_coord(struct point my_coord)
+{
+	printf("x: %f\n", my_coord.x);
+	printf("y: %f\n", my_coord.y);
+	
+}
+
 struct cloud
 {
 	struct point points[10];
 };
 
-float distance(point point1, point point2)
+float distance(point my_point1, point my_point2)
 {
 	float result = 0;
-	result = sqrt((point1.x - point2.x)*(point2.x - point1.x) + sqrt(point2.y - point1.y)*(point2.y - point1.y));
-	printf_s("sqrt((point1.x - point2.x)*(point2.x - point1.x) + sqrt(point2.y - point1.y)*(point2.y - point1.y))= %f\n", &result);
+	result = sqrt((my_point1.x - my_point2.x)*(my_point2.x - my_point1.x) + sqrt(my_point2.y - my_point1.y)*(my_point2.y - my_point1.y));
+	printf_s("sqrt((my_point1.x - my_point2.x)*(my_point2.x - my_point1.x) + sqrt(my_point2.y - my_point1.y)*(my_point2.y - my_point1.y))= %f\n", &result);
 	return result;
 }
 
@@ -31,7 +38,6 @@ int main()
 
 	//struct point best_point;
 	struct cloud my_cloud;
-	struct point my_coord;
 
 	for (int i = 0; i < 10; i++)
 	{
@@ -59,14 +65,26 @@ int main()
 	};
 
 	//написать функцию ввода координаты x,y с клавиатуры. (scan_f) --> my_coord;
+	struct point my_coord;
+	printf("Vvedi x: \n");
+	scanf_s("%f", &my_coord.x);
 
+	printf("Vvedi y: \n ");
+	scanf_s("%f", &my_coord.y);
+
+	print_my_coord(my_coord);
 
 	//вызвать функцию через for(10) distance(my_coord, my_cloud.points[i])
+	for (int i = 0, i < 10, distance(my_coord, my_cloud.points[i])
+	{
 
+	}
 	
 
 	//float distance;
 	_getch();
 	return 0;
 }
+
+
 
