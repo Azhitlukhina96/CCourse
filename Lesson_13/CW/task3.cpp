@@ -19,7 +19,7 @@ float distance(struct point point1, struct point point2)
 {
 	float result = 0;
 	result = sqrt((point1.x - point2.x)*(point2.x - point1.x) + sqrt(point2.y - point1.y)*(point2.y - point1.y));
-	printf("sqrt((point1.x - point2.x)*(point2.x - point1.x) + sqrt(point2.y - point1.y)*(point2.y - point1.y))= %f\n", &result);
+	printf_s("sqrt((point1.x - point2.x)*(point2.x - point1.x) + sqrt(point2.y - point1.y)*(point2.y - point1.y))= %f\n", &result);
 	return result;
 }
 
