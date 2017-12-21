@@ -23,11 +23,11 @@ struct cloud
 	struct point points[10];
 };
 
-float distance(point my_point1, point my_point2)
+float distance(point point1, point point2)
 {
 	float result = 0;
-	result = sqrt((my_point1.x - my_point2.x)*(my_point2.x - my_point1.x) + sqrt(my_point2.y - my_point1.y)*(my_point2.y - my_point1.y));
-	printf_s("sqrt((my_point1.x - my_point2.x)*(my_point2.x - my_point1.x) + sqrt(my_point2.y - my_point1.y)*(my_point2.y - my_point1.y))= %f\n", &result);
+	result = sqrt((point1.x - point2.x)*(point2.x - point1.x) + sqrt(point2.y - point1.y)*(point2.y - point1.y));
+	printf_s("sqrt((point1.x - point2.x)*(point2.x - point1.x) + sqrt(point2.y - point1.y)*(point2.y - point1.y))= %f\n", &result);
 	return result;
 }
 
