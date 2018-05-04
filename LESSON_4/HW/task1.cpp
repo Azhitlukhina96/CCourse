@@ -1,10 +1,12 @@
-//Контрольная работа "Калькулятор"
+// Контрольная работа "Калькулятор"
+//
 
-#include "stdafx.h"
+#include<cstdio>
 #include<stdlib.h>
 #include<string>
+#include <locale>
 #include <math.h>
-#define BUFFER_SIZE 1024
+#include "stdafx.h"
 
 typedef struct Int_Stack
 {
@@ -22,8 +24,8 @@ Int_Stack* push(Int_Stack *head, int a)
 {
 	Int_Stack *pointer;
 	pointer = (Int_Stack*)malloc(sizeof(Int_Stack));
-	pointer->n=a;
-	pointer->next=head;
+	pointer->n = a;
+	pointer->next = head;
 	return pointer;
 }
 
@@ -31,8 +33,8 @@ Stack* push(Stack *head, char a)
 {
 	Stack *pointer;
 	pointer = (Stack*)malloc(sizeof(Stack));
-	pointer->c =a;
-	pointer->next=head;
+	pointer->c = a;
+	pointer->next = head;
 	return pointer;
 }
 
@@ -44,7 +46,7 @@ int pop(Int_Stack **head)
 		return '\0';
 	pointer = *head;
 	a = pointer->n;
-	*head=pointer->next;
+	*head = pointer->next;
 	free(pointer);
 	return a;
 }
@@ -55,9 +57,9 @@ char pop(Stack **head)
 	char a;
 	if (*head == NULL)
 		return '\0';
-	pointer=*head;
+	pointer = *head;
 	a = pointer->c;
-	*head = pointer -> next;
+	*head = pointer->next;
 	free(pointer);
 	return a;
 }
@@ -80,7 +82,7 @@ int prior(char a)
 int string_to_number(char* input_string)
 {
 	int result = 0;
-	int k = 0;
+	int k = 0; 
 	int i = 10;
 	while (input_string[k] != '\0')
 	{
@@ -90,6 +92,7 @@ int string_to_number(char* input_string)
 	return result;
 }
 
+const int BUFFER_SIZE = 100;
 
 bool parse(char *input_string, int &result)
 {
@@ -117,17 +120,17 @@ bool parse(char *input_string, int &result)
 		}
 		else
 		{
-			x2 = pop(&stack);
 			x1 = pop(&stack);
+			x2 = pop(&stack);
 			switch (input_string[k])
 			{
-			case '+': result = x1 + x2; stack = push(stack, result);
+			case '+': result = x1 + x2; stack = push(stack, result); 
 				break;
-			case '-': result = x1 - x2; stack = push(stack, result);
+			case '-': result = x1 - x2; stack = push(stack, result); 
 				break;
-			case '*': result = x1 * x2; stack = push(stack, result);
+			case '*': result = x1 * x2; stack = push(stack, result); 
 				break;
-			case '/': if (x2 == 0) return false; result = x1 / x2; stack = push(stack, result);
+			case '/': if (x2 == 0) return false; result = x1 / x2; stack = push(stack, result); 
 				break;
 			}
 			k++;
@@ -150,7 +153,7 @@ char* polish_notation(char *input_string)
 	{
 		if (input_string[k] == ')')
 		{
-			while ((operands -> c) != '(' )
+			while ((operands->c) != '(')
 				output_string[point++] = pop(&operands);
 			pop(&operands);
 		}
@@ -168,11 +171,11 @@ char* polish_notation(char *input_string)
 			if (operands == NULL)
 				operands = push(operands, input_string[k]);
 			else
-				if (prior(operands -> c) < prior(input_string[k]))
+				if (prior(operands->c) < prior(input_string[k]))
 					operands = push(operands, input_string[k]);
 				else
 				{
-					while ((operands != NULL) && (prior(operands -> c) >= prior(input_string[k])))
+					while ((operands != NULL) && (prior(operands->c) >= prior(input_string[k])))
 					{
 						output_string[point++] = pop(&operands);
 					}
@@ -181,34 +184,33 @@ char* polish_notation(char *input_string)
 		}
 		k++;
 	}
-	
 	while (operands != NULL)
 		output_string[point++] = pop(&operands);
 	output_string[point] = '\0';
 	return output_string;
 }
 
-int main()
+void main()
 {
 	FILE *operations_file;
 	FILE *result_file;
 	printf_s("Open a file: operations.txt ...\n");
-	errno_t err = fopen_s(&operations_file, "C:\\Users\\User\\Desktop\\Калькулятор\\operations.txt", "r");
+	errno_t err = fopen_s(&operations_file, "C:\\Users\\User\\source\\repos\\ConsoleApplication3\\ConsoleApplication3\\operations.txt", "r");
 	if (err)
 	{
 		printf_s("The file operations.txt was not opened\n");
 		return 0;
 	}
 	printf_s("Open a file: result.txt ...\n");
-	err = fopen_s(&result_file, "C:\\Users\\User\\Desktop\\Калькулятор\\result.txt", "w");
+	err = fopen_s(&result_file, "C:\\Users\\User\\source\\repos\\ConsoleApplication3\\ConsoleApplication3\\result.txt", "w");
 	if (err)
 	{
 		printf_s("The file result.txt was not opened\n");
 		return 0;
 	}
 	printf_s("Processing data ...\n");
-	
-	char buffer[BUFFER_SIZE];
+	char *buffer;
+	buffer = (char*)malloc(sizeof(char) * BUFFER_SIZE);
 	char *polish_string;
 	int result;
 	while (fgets(buffer, BUFFER_SIZE, operations_file) != NULL)
@@ -219,7 +221,6 @@ int main()
 		else
 			fprintf(result_file, "NaN\n");
 	}
-	
 	printf_s("The result was wtitten into result.txt file\n");
 
 	return 0;
