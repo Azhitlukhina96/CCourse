@@ -1,5 +1,6 @@
 //Самостоятельная работа.
 
+
 #include "stdafx.h"
 #include <stdlib.h>
 
@@ -141,6 +142,19 @@ void printTree(Node *root, const char *dir, int level) {
 	}
 }
 
+int getDepth(Node *root, int depth)
+{
+	int left, right;
+	if (root) {
+		left = getDepth(root->left, depth + 1);
+		right = getDepth(root->right, depth + 1);
+		if (left > right)
+			return left;
+		else return right;
+	}
+	return depth - 1;
+}
+
 
 int main() {
 	Node *root = NULL;
@@ -158,9 +172,12 @@ int main() {
 	printf("parent of 7 is %d\n", getNodeByValue(root, 7)->parent->data);
 
 	//deleteValue(root, 4);
-	
+
 	printf("Sorted tree: \n");
 	printSortedTree(root, "root", 0);
-	
+	getDepth(root, 0);
+	printf("Tree depth: %d", getDepth(root, 0));
+
 	return 0;
 }
+
